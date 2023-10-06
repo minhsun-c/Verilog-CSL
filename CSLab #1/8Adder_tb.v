@@ -1,4 +1,4 @@
-`include "nAdder.v"
+`include "8Adder.v"
 
 module nAdder_tb;
 
@@ -7,15 +7,15 @@ module nAdder_tb;
     wire [7:0] S;
     wire Cout;
     
-    nAdder #(8)  F1(A, B, C, S, Cout);
+    Adder8  F(A, B, C, S, Cout);
 
     initial begin
-        $dumpfile("nAdder.vcd");
-        $dumpvars(1, nAdder_tb);
+        $dumpfile("8Adder.vcd");
+        $dumpvars(1, 8Adder_tb);
         
         $monitor("Time: %3g\tA: %4d\tB: %4d\tCin: %b\tCout: %b\tSum: %4d", $time, A, B, C, Cout, S);
 
-        #5 A=8'd0; B=8'd250; C=1'b0;
+           A=8'd0; B=8'd250; C=1'b0;
         #5 A=8'd1; B=8'd250; C=1'b0;
         #5 A=8'd2; B=8'd250; C=1'b0;
         #5 A=8'd3; B=8'd250; C=1'b0;
