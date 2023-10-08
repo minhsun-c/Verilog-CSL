@@ -16,11 +16,7 @@ module multiplier8x8 (
     reg [7:0] A, B;
     reg [1:0] state;
     reg [4:0] cnt;
-    // always @* 
-    //     $monitor(
-    //         "%8b x %8b = %8b %8b [%d]",
-    //         A, B, product[15:8], product[7:0], state    
-    //     );
+    
     always @(posedge clk, areset) begin
         if (areset) begin
             A <= multiplicand;

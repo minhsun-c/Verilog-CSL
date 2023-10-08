@@ -1,4 +1,4 @@
-`include "Multiplier.v"
+`include "Multiplier_one_module.v"
 
 module tb;
     reg [7:0] A, B;
@@ -15,6 +15,8 @@ module tb;
         clk = 0;
         #5 areset = 1; A = 8'd123; B = 8'd23; clk = 1; 
         #5 areset = 0; clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
         #5 clk = 0; clk = 1;
         #5 clk = 0; clk = 1;
         #5 clk = 0; clk = 1;
