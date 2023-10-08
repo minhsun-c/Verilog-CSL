@@ -5,13 +5,42 @@
 `include "ShiftReg.v"
 
 // performing out = A * B
-module multiplier (
-    output [15:0] out,
-    input [7:0] A, B
+module multiplier8x8 (
+    output reg [15:0] product,
+    input [7:0] multiplicand, multiplier,
+    input clk, areset
 );
-    // q, clk, areset, data
-    Shift_Reg8 mult(A);
-    Shift_Reg8 mplier(B);
+    parameter run = 1;
+    parameter idle = 2;
+    parameter halt = 3;
+    reg [7:0] A, B;
+    reg [1:0] state;
+    reg [4:0] cnt;
+    always @(posedge clk, areset) begin
+        if (areset) begin
+            A <= multiplicand;
+            B <= multiplier;
+            product <= 16'b0;
+            cnt = 0;
+        end
+        else begin
+            if (cnt == 8) state = halt;
+            else if (B[0] == 1) state = run;
+            else state = idle;
+            cnt = cnt + 1;
+        end
+    end
+
+    always @(posedge clk) begin
+        if (state == idle || state == halt) begin
+            product[15:8] = product[15:8];
+        end
+        else begin
+            product[15:8] = product[15:8] + A;
+        end
+        product = {1'b0, product[15:1]};
+        B = {1'b0, B[7:1]};
+    end
 
 endmodule
 

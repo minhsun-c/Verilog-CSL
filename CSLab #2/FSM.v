@@ -2,16 +2,31 @@
 `define _FINITE_STATE_MACHINE
 
 /*
-    state: 
+    init state: 1, 0
+    product shift
+    product write 
+    input from multiplier
+    multiplier shift
+    clock
+
+    reset, 
 */
 module FSM (
-    output reg out,
+    output pd_shift,
+    output pd_write,
+    output mpr_shift,
+    output alu_state,
+    input clk,
     input areset,
-    input [1:0] data, // data for reseting the fsm
-    input in
+    input init_state,
+    input mpr_input
 );
-    always @() begin
-        
+    reg state;
+    always @(posedge clk, areset) begin
+        if (areset) state = init_state;
+        else begin
+            
+        end
     end
     
 endmodule
