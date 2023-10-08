@@ -9,12 +9,14 @@ module tb;
 
     initial begin
         $monitor(
-            "[%3g] %8b x %8b = %8b %8b",
-            $time, A, B, product[15:8], product[7:0]
+            "[%3g, %b] %8d x %8d = %8d",
+            $time, areset, A, B, product
         );
         clk = 0;
-        #5 areset = 1; A = 8'b100; B = 8'b101; clk = 1; 
+        #5 areset = 1; A = 8'd123; B = 8'd23; clk = 1; 
         #5 areset = 0; clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
         #5 clk = 0; clk = 1;
         #5 clk = 0; clk = 1;
         #5 clk = 0; clk = 1;

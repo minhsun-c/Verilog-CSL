@@ -10,12 +10,17 @@ module multiplier8x8 (
     input [7:0] multiplicand, multiplier,
     input clk, areset
 );
-    parameter run = 1;
-    parameter idle = 2;
-    parameter halt = 3;
+    parameter run = 0;
+    parameter idle = 1;
+    parameter halt = 2;
     reg [7:0] A, B;
     reg [1:0] state;
     reg [4:0] cnt;
+    // always @* 
+    //     $monitor(
+    //         "%8b x %8b = %8b %8b [%d]",
+    //         A, B, product[15:8], product[7:0], state    
+    //     );
     always @(posedge clk, areset) begin
         if (areset) begin
             A <= multiplicand;
@@ -24,7 +29,7 @@ module multiplier8x8 (
             cnt = 0;
         end
         else begin
-            if (cnt == 8) state = halt;
+            if (cnt >= 9) state = halt;
             else if (B[0] == 1) state = run;
             else state = idle;
             cnt = cnt + 1;
@@ -32,14 +37,21 @@ module multiplier8x8 (
     end
 
     always @(posedge clk) begin
+        if (state == halt) begin
+            product = product;
+            B = B;
+        end
+        else begin
+            product = {1'b0, product[15:1]};
+            B = {1'b0, B[7:1]};
+        end
         if (state == idle || state == halt) begin
             product[15:8] = product[15:8];
         end
         else begin
             product[15:8] = product[15:8] + A;
         end
-        product = {1'b0, product[15:1]};
-        B = {1'b0, B[7:1]};
+        
     end
 
 endmodule
