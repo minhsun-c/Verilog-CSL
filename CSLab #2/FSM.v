@@ -1,34 +1,39 @@
 `ifndef _FINITE_STATE_MACHINE 
 `define _FINITE_STATE_MACHINE
 
-/*
-    init state: 1, 0
-    product shift
-    product write 
-    input from multiplier
-    multiplier shift
-    clock
-
-    reset, 
-*/
-module FSM (
-    output pd_shift,
-    output pd_write,
-    output mpr_shift,
-    output alu_state,
-    input clk,
-    input areset,
-    input init_state,
-    input mpr_input
+module MUL_FSM (
+    output reg [1:0] state,
+    input clk, areset, 
+    input [7:0] multiplier
 );
-    reg state;
+    parameter INIT = 0;
+    parameter EXEC = 1;
+    parameter IDLE = 2;
+    parameter HALT = 3;
+
+    reg [3:0] counter;
+
     always @(posedge clk, areset) begin
-        if (areset) state = init_state;
-        else begin
-            
+        $monitor("arst: %b, counter: %d, next_state: %d\n", areset, counter, state);
+        if (areset) begin
+            state = INIT;
+            counter = 0;
+        end
+        else if (counter >= 8) begin
+            state = HALT;
+        end
+        else if (multiplier[0]) begin
+            state = EXEC;
+            counter = counter + 1;
+        end
+        else if (~multiplier[0])  begin
+            state = IDLE;
+            counter = counter + 1;
+        end
+        else begin // multiplier[0] == x
+            state = INIT;
+            counter = 0;
         end
     end
-    
 endmodule
-
 `endif 

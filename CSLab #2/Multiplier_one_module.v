@@ -2,7 +2,6 @@
 `define _8x8_MULTIPLIER
 
 `include "Adder8.v"
-`include "ShiftReg.v"
 
 // performing out = A * B
 module multiplier8x8 (
@@ -16,13 +15,18 @@ module multiplier8x8 (
     reg [7:0] A, B;
     reg [1:0] state;
     reg [4:0] cnt;
-    
+    wire Cout;
+    wire [15:8] Sum;
+
+    Adder8 ALU(Cout, Sum, A, product[15:8]);
+
     always @(posedge clk, areset) begin
         if (areset) begin
             A <= multiplicand;
             B <= multiplier;
             product <= 16'b0;
             cnt = 0;
+            temp = 0;
         end
         else begin
             if (cnt >= 9) state = halt;
@@ -32,20 +36,23 @@ module multiplier8x8 (
         end
     end
 
+    
+
     always @(posedge clk) begin
         if (state == halt) begin
-            product = product;
-            B = B;
+            product <= product;
+            B <= B;
         end
         else begin
-            product = {1'b0, product[15:1]};
-            B = {1'b0, B[7:1]};
+            product <= {temp, product[15:1]};
+            B <= {1'b0, B[7:1]};
         end
         if (state == idle || state == halt) begin
-            product[15:8] = product[15:8];
+            product[15:8] <= product[15:8];
         end
         else begin
-            product[15:8] = product[15:8] + A;
+            product[15:8] <= product[15:8] + A;
+            temp <= (product[15:8] + A) > 8'hff;
         end
         
     end
