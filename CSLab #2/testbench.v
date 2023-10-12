@@ -1,4 +1,4 @@
-`include "Multiplier_one_module.v"
+`include "Multiplier_modules.v"
 
 module tb;
     reg [7:0] A, B;
@@ -8,13 +8,61 @@ module tb;
     multiplier8x8 M(product, A, B, clk, areset);
 
     initial begin
-        $monitor(
-            "[%3g, %b] %8d x %8d = %8d",
-            $time, areset, A, B, product
-        );
+        $dumpfile("mul.vcd");
+        $dumpvars(0, tb);
+
         clk = 0;
-        #5 areset = 1; A = 8'd254; B = 8'd10; clk = 1; 
-        #5 areset = 0; clk = 0; clk = 1;
+        #5 areset = 1; A = 8'd55; B = 8'd100; clk = 1; 
+        #5 clk = 0; areset = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+
+        $display("\n-----\n");
+                
+        #5 clk = 0; areset = 1; A = 8'd255; B = 8'd255; clk = 1; 
+        #5 clk = 0; areset = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+
+        $display("\n-----\n");
+                
+        #5 clk = 0; areset = 1; A = 8'd1; B = 8'd1; clk = 1; 
+        #5 clk = 0; areset = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+               
+        $display("\n-----\n");
+                
+        #5 clk = 0; areset = 1; A = 8'd1; B = 8'd0; clk = 1; 
+        #5 clk = 0; areset = 0; clk = 1;
+        #5 clk = 0; clk = 1;
         #5 clk = 0; clk = 1;
         #5 clk = 0; clk = 1;
         #5 clk = 0; clk = 1;
