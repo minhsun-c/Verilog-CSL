@@ -1,6 +1,6 @@
 `include "8Adder.v"
 
-module nAdder_tb;
+module 8Adder_tb;
 
     reg [7:0] A, B;
     reg C;
@@ -24,7 +24,7 @@ module nAdder_tb;
         #5 A=8'd6; B=8'd250; C=1'b0;
         #5 A=8'd7; B=8'd250; C=1'b0;
         #5 A=8'd8; B=8'd250; C=1'b0;
-        #5 A=8'd9; B=8'd250; C=1'b0;
+        #5 A=8'd9; B=8'd250; C=1'b0; // 8'b1001
         #5 A=8'd0; B=8'd250; C=1'b1;
         #5 A=8'd1; B=8'd250; C=1'b1;
         #5 A=8'd2; B=8'd250; C=1'b1;

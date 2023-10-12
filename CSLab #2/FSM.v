@@ -14,7 +14,7 @@ module MUL_FSM (
     reg [3:0] counter;
 
     always @(posedge clk, areset) begin
-        $monitor("arst: %b, counter: %d, next_state: %d\n", areset, counter, state);
+        $monitor("[%2g] arst: %b, counter: %d, next_state: %d", $time, areset, counter, state);
         if (areset) begin
             state = INIT;
             counter = 0;
@@ -33,6 +33,7 @@ module MUL_FSM (
         else begin // multiplier[0] == x
             state = INIT;
             counter = 0;
+            $display("[%2g] multiplier[0] == x", $time);
         end
     end
 endmodule

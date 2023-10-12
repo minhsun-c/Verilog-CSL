@@ -1,0 +1,95 @@
+$date
+	Wed Oct 11 15:18:35 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module nAdder_tb $end
+$var wire 8 ! S [7:0] $end
+$var wire 1 " Cout $end
+$var reg 8 # A [7:0] $end
+$var reg 8 $ B [7:0] $end
+$var reg 1 % C $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+x%
+bx $
+bx #
+x"
+bx !
+$end
+#5
+0"
+b11111010 !
+0%
+b11111010 $
+b0 #
+#10
+b11111011 !
+b1 #
+#15
+b11111100 !
+b10 #
+#20
+b11111101 !
+b11 #
+#25
+0"
+b11111110 !
+b100 #
+#30
+b11111111 !
+b101 #
+#35
+1"
+b0 !
+b110 #
+#40
+b1 !
+b111 #
+#45
+b10 !
+b1000 #
+#50
+b11 !
+b1001 #
+#55
+0"
+b11111011 !
+1%
+b0 #
+#60
+b11111100 !
+b1 #
+#65
+b11111101 !
+b10 #
+#70
+b11111110 !
+b11 #
+#75
+0"
+b11111111 !
+b100 #
+#80
+1"
+b0 !
+b101 #
+#85
+b1 !
+b110 #
+#90
+b10 !
+b111 #
+#95
+b11 !
+b1000 #
+#100
+b100 !
+b1001 #
+#105

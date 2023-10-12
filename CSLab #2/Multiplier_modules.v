@@ -36,14 +36,20 @@ module multiplier8x8 (
         .Cin(1'b0)
     );
     
+    always @(negedge clk) $display("");
+
     // state transition logic
-    always @(posedge clk) begin
+    always @(posedge clk) begin 
         $display("[%2g] B: %08b , state: %d", $time, B, state);
         // if (areset) begin
         //     B = multiplier;
         //     product = 16'b0;
         // end
-        if (state == INIT) begin
+        if (state == HALT && areset) begin
+            B = multiplier;
+            product = 16'b0;
+        end
+        else if (state == INIT) begin
             B = multiplier;
             product = 16'b0;
         end
@@ -63,8 +69,9 @@ module multiplier8x8 (
             B = B;
             $display("[%2g] product: %08b %08b | %8d", $time, product[15:8], product[7:0], product);
         end
-        state = next_state;
     end
+
+    always @(negedge clk) state = next_state;
 
 endmodule
 `endif
