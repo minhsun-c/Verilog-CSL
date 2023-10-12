@@ -12,7 +12,7 @@ module tb;
         $dumpvars(0, tb);
 
         clk = 0;
-        #5 areset = 1; A = 8'd255; B = 8'd100; clk = 1; 
+        #5 areset = 1; A = 8'd55; B = 8'd100; clk = 1; 
         #5 clk = 0; areset = 0; clk = 1;
         #5 clk = 0; clk = 1;
         #5 clk = 0; clk = 1;
@@ -45,6 +45,22 @@ module tb;
         $display("\n-----\n");
                 
         #5 clk = 0; areset = 1; A = 8'd1; B = 8'd1; clk = 1; 
+        #5 clk = 0; areset = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+        #5 clk = 0; clk = 1;
+               
+        $display("\n-----\n");
+                
+        #5 clk = 0; areset = 1; A = 8'd1; B = 8'd0; clk = 1; 
         #5 clk = 0; areset = 0; clk = 1;
         #5 clk = 0; clk = 1;
         #5 clk = 0; clk = 1;
