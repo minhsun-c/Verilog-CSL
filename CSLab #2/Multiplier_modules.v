@@ -41,10 +41,6 @@ module multiplier8x8 (
     // state transition logic
     always @(posedge clk) begin 
         $display("[%2g] B: %08b , state: %d", $time, B, state);
-        // if (areset) begin
-        //     B = multiplier;
-        //     product = 16'b0;
-        // end
         if (state == HALT && areset) begin
             B = multiplier;
             product = 16'b0;
