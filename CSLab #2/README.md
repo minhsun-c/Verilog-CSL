@@ -42,7 +42,6 @@
     clear:
         rm -f mul
         rm -f mul.vcd
-        
     ```
 
 ## 編譯檔案
@@ -59,14 +58,14 @@ make
 ```
 
 ## 程式碼概述
-`Multiplier.v` 共包含 3 個程式區塊
+`Multiplier.v` 共包含 4 個程式區塊
 
 1. `MUL_FSM ControlUnit(...)`
     - 乘法器的控制單元，使用一組狀態機。其中，狀態機共包含 4 個狀態：INIT, EXEC, IDLE, HALT
     - 時脈正緣驅動，產生的結果是 next state
 2. `Adder8 ALU(...)`
     - 乘法器的 ALU
-    - 被加數(multiplicand) + 加數(product) = 進位(Cout) + 加總(tempSum)
+    - 被加數(multiplicand) + 加數(product) => 進位(Cout) + 加總(tempSum)
     - 進位、加總 需要另外儲存的原因是這個結果不一定會被使用，要取決於 multiplier[0]
 3. `always @(posedge clk)`
    - 根據上一個 clock cycle 得到的 state 決定乘法器的行為，包含初始化(INIT)、執行(EXEC)、閒置(IDLE)、停止(HALT)
