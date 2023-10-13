@@ -1,7 +1,7 @@
 # CSLab #1 Verilog HW
 ## 檔案總覽
 - `fAdder.v`
-    ```
+    ```verilog
     module Full_Adder(
         input A, B, Cin,
         output Sum, Cout    
@@ -9,7 +9,7 @@
     ```
 - `fAdder_tb.v`：測試 `Full_Adder` 的正確性
 - `8Adder.v`
-    ```
+    ```verilog
     module Adder8(
         input [7:0] A, B,
         input Cin,
