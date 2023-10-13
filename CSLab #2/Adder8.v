@@ -9,9 +9,6 @@ module Adder8 (
     input [7:0] A, B,
     input Cin
 );
-    // always @(*) begin
-    //     $monitor("**time: %02g, A: %08b, B: %08b, S: %08b", $time, A, B, Sum);
-    // end
     wire [7:1] ctemp;
     Full_Adder F0(ctemp[1], Sum[0], A[0], B[0], Cin);
     Full_Adder F1(ctemp[2], Sum[1], A[1], B[1], ctemp[1]);
