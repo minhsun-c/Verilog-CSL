@@ -1,8 +1,8 @@
-mul: clear mul_s_tb.v
-	clear
-	iverilog -o mul mul_s_tb.v
-	vvp mul
+mul: build testbench.v
+	iverilog -o build/mul testbench.v
+	vvp build/mul
+build:
+	mkdir build
 clear:
-	rm -f mul
-	rm -f mul.vcd
+	rm -rf build
 	

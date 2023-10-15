@@ -1,4 +1,4 @@
-`include "Multiplier_modules.v"
+`include "src/Multiplier.v"
 
 module tb;
     reg [7:0] A, B;
@@ -8,7 +8,7 @@ module tb;
     multiplier8x8 M(product, A, B, clk, areset);
 
     initial begin
-        $dumpfile("mul.vcd");
+        $dumpfile("build/mul.vcd");
         $dumpvars(0, tb);
 
         clk = 0;

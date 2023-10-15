@@ -1,7 +1,7 @@
 `ifndef _8_BITS_ADDER
 `define _8_BITS_ADDER
 
-`include "FAdder.v"
+`include "src/FAdder.v"
 
 module Adder8 (
     output Cout, 

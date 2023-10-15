@@ -1,8 +1,8 @@
 `ifndef _8x8_MULTIPLIER
 `define _8x8_MULTIPLIER
 
-`include "Adder8.v"
-`include "FSM.v"
+`include "src/Adder8.v"
+`include "src/FSM.v"
 
 // performing out = A * B
 module multiplier8x8 (
