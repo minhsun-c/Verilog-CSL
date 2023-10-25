@@ -1,4 +1,4 @@
-# CSLab #2 Verilog HW
+# CSLab #3 Verilog HW
 ## 檔案總覽
 - `CLA.v`
     ```verilog
