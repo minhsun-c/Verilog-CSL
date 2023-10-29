@@ -18,15 +18,7 @@ module tb;
             "[%03g] %04b + %04b = %b%04b",
             $time, A, B, Cout, Sum
         );
-        // for (integer i=0; i<16; i=i+1) begin
-        //     for (integer j=0; j<16; j=j+1) begin
-        //         #1 A = i; B = j; 
-        //         $display(
-        //             "[%3g] %04b + %04b = %b%04b",
-        //             $time, A, B, Cout, Sum
-        //         );
-        //     end
-        // end
+
         #1 A = 4'd0; B = 4'd0;
 		#1 A = 4'd0; B = 4'd1;
 		#1 A = 4'd0; B = 4'd2;
