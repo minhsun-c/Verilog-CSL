@@ -34,9 +34,10 @@
 - `testbench.v`
 - `Makefile`
     ```
-    mul: clear build testbench.v
-        iverilog -o build/cla testbench.v
-        vvp build/cla > build/log
+    OUTPUTFILE = wallace
+    run: clear build testbench.v
+        iverilog -o build/$(OUTPUTFILE) testbench.v
+        vvp build/$(OUTPUTFILE) > build/log
     build:
         mkdir build
     clear:
@@ -44,28 +45,11 @@
     ```
 
 
-## 原理概述
-### 參數列表
-- Propagate ($P$):
-    > $P_i$ = $A_i$ ^ $B_i$
+## 程式碼概述
+Wallace Tree Multiplier 的實作可以分成 3 個部分：
 
-- Generate ($G$):
-    > $G_i$ = $A_i$ & $B_i$
-
-- Carry ($C$):
-    > $C_{i+1}$ = $P_i$ & $C_i$ | $G_i$
-
-### 說明
-A, B 有四種可能組合： (0,0), (1,0), (0,1), (1,1)
-```c
-if (G == 1):
-    必定有進位
-else:
-    if (P == 1):
-        A, B 的組合為 (1,0), (0,1) 
-        C 完全決定是否有進位
-    else:
-        A, B 的組合為 (0,0), (1,1) 
-        P & C 完全不可能有進位
-```
-
+1. 求出所有的 Partial Product
+    > 實際的方式是將被乘數和乘數的各位分別作 And 運算，共有 16 個結果。另外，尚需要考慮對齊，故須補零。
+2. 使用 Carry Save Adder 加總 Partial Product，每做一次加法可以將 3 行 Partial Product 化簡為 Carry, Sum 兩行
+3. 當 Partial Product 只剩下 2 行，可以使用任意一種加法器，將總合放置在 `Product` 
+    > 這裡使用的是 Carry Lookahead Adder，使用 Carry Ripple Adder 也可行
